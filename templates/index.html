@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,9 +8,11 @@
 </head>
 <body>
     <ul>
-    {% for article in article_list %}
-        <li><a href="/view_detail/{{ article.id }}">{{ article.title }}</a> | {{ article.name }} | {{ article.cdate|date:"Y년 M d일 D" }}</li>
+    {% for article in latest_article_list %}
+        <li> <a href="/view_detail/{{ article.id }}"></a> {{ article.title }} |{{ article.name }} | {{ article.cdate|date:"Y년 M d일 D" }}  </li> 
     {% endfor %}
     </ul>
+    <button><a href="/write">메모작성하기</a></button>
+
 </body>
 </html>
