@@ -9,7 +9,7 @@
 <body>
     <ul>
     {% for article in article_list %}
-        <li><a href="/view_detail/{{ article.id }}">{{ article.title }}</a> | {{ article.name }} | {{ article.cdate|date:"Y년 M d일 D" }}</li>
+        <li><a href="/community/view_detail/{{ article.id }}">{{ article.title }}</a> | {{ article.name }} | {{ article.cdate|date:"Y년 M d일 D" }}</li>
     {% endfor %}
     </ul>
 </body>
