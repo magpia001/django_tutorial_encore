@@ -20,5 +20,6 @@ from community.views import index
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('community/', include('community.urls')),
+    path('dashboard/', include('dashboard.urls')),
     path('', index, name='index'),
 ]
