@@ -16,10 +16,16 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from community.views import index
+from .views import UserCreateView, UserCreateDoneTV
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('community/', include('community.urls')),
     path('dashboard/', include('dashboard.urls')),
     path('', index, name='index'),
+    # 인증 관련 path 모두 포함시키기
+    path('accounts/', include('django.contrib.auth.urls')),
+    # login 인증 path
+    path('account/register/', UserCreateView.as_view(), name='register'),
+    path('account/register/done/', UserCreateDoneTV.as_view(), name="register_done"),
 ]
