@@ -1,7 +1,9 @@
 from django.views.generic.base import TemplateView
 from django.views.generic import CreateView   # 새로운 레코드 생성을 위한 폼 뷰 보임, 테이블 레코드 생성 
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import AccessMixin
 from .forms import CreateUserForm 
+
 class UserCreateView(CreateView):
     form_class = CreateUserForm  #forms.py에 정의 되어 있는 form클래스 
     template_name = 'registration/register.html'
@@ -11,3 +13,14 @@ class UserCreateView(CreateView):
     success_url = reverse_lazy('register_done') 
 class UserCreateDoneTV(TemplateView):
     template_name = 'registration/register_done.html' 
+
+# 믹스인 클래스 추가
+class OwnerOnlyMixin(AccessMixin):
+  raise_exception =True
+  permission_denied_message = "Owner only can update/delete the object"
+  
+  def dispatch(self, request, *args, **kwargs):
+    obj = self.get_object()
+    if request.user != obj.owner:
+      return self.handle_no_permission()
+    return super().dispatch(request, *args, **kwargs)

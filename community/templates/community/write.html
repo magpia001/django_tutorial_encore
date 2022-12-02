@@ -4,6 +4,8 @@
 메모 작성
 {% endblock title %}
 {% block content %}
+    <h1>메모글 작성</h1>
+    <p>{{ user }}</p>
     <form action="" method="post">
         <table>
             {{ form | crispy }} {% csrf_token %}
